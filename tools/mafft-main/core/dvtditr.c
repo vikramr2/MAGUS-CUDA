@@ -122,7 +122,7 @@ void arguments( int argc, char *argv[] )
 					goto nextoption;
 				case 'I':
 					niter = myatoi( *++argv );
-					fprintf( stderr, "niter = %d\n", niter );
+					fprintf( stderr, "dvditr: niter = %d\n", niter );
 					--argc;
 					goto nextoption;
 				case 'e':
@@ -154,7 +154,7 @@ void arguments( int argc, char *argv[] )
 					goto nextoption;
 				case 'h':
 					poffset = (int)( atof( *++argv ) * 1000 - 0.5 );
-					fprintf( stderr, "poffset = %d\n", poffset );
+					fprintf( stderr, "dvditr: poffset = %d\n", poffset );
 					--argc;
 					goto nextoption;
 				case 'k':
@@ -165,7 +165,7 @@ void arguments( int argc, char *argv[] )
 				case 'b':
 					nblosum = myatoi( *++argv );
 					scoremtx = 1;
-					fprintf( stderr, "blosum %d / kimura 200\n", nblosum );
+					fprintf( stderr, "dvtditr\nblosum %d / kimura 200\n", nblosum );
 					--argc; 
 					goto nextoption;
 				case 'j':
@@ -199,7 +199,7 @@ void arguments( int argc, char *argv[] )
 					goto nextoption;
 				case 'C':
 					nthread = myatoi( *++argv );
-					fprintf( stderr, "nthread = %d\n", nthread );
+					fprintf( stderr, "dvditr: nthread = %d\n", nthread );
 					--argc; 
 					goto nextoption;
 				case 'H':
@@ -209,7 +209,7 @@ void arguments( int argc, char *argv[] )
 					goto nextoption;
 				case 't':
 					randomseed = myatoi( *++argv );
-					fprintf( stderr, "randomseed = %d\n", randomseed );
+					fprintf( stderr, "dvditr: randomseed = %d\n", randomseed );
 					--argc; 
 					goto nextoption;
 				case 'p':
@@ -368,12 +368,12 @@ void arguments( int argc, char *argv[] )
 #endif
 				case 'E':
 					autosubalignment = atof( *++argv );
-					fprintf( stderr, "autosubalignment = %f\n", autosubalignment );
+					fprintf( stderr, "dvditr: autosubalignment = %f\n", autosubalignment );
 					--argc;
 					goto nextoption;
 				case 'W':
 					minimumweight = atof( *++argv );
-					fprintf( stderr, "minimumweight = %f\n", minimumweight );
+					fprintf( stderr, "dvditr: minimumweight = %f\n", minimumweight );
 					--argc;
 					goto nextoption;
 				case 'z':
@@ -1093,7 +1093,7 @@ exit( 1 );
 			seq_g[j] += tmplen;	
 
 		}
-		fprintf( stderr, "Segment %3d/%3d %4d-%4d\n", iseg+1, nseg-1, pos+1, pos+1+tmplen );
+		fprintf( stderr, "dvtditr: Segment %3d/%3d %4d-%4d\n", iseg+1, nseg-1, pos+1, pos+1+tmplen );
 		fflush( stderr );
 		fprintf( trap_g, "Segment %3d/%3d %4d-%4d\n", iseg+1, nseg-1, pos+1, pos+1+tmplen );
 	

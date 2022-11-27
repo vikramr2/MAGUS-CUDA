@@ -180,6 +180,7 @@ void arguments( int argc, char *argv[] )
             {
 				case 'i':
 					inputfile = *++argv;
+					fprintf( stderr, "mccaskillwrap.c" );
 					fprintf( stderr, "inputfile = %s\n", inputfile );
 					--argc;
 					goto nextoption;
@@ -355,7 +356,7 @@ int main( int argc, char *argv[] )
 	{
 		for( i=0; i<njob; i++ )
 		{
-			fprintf( stderr, "%d / %d\n", i+1, njob );
+			fprintf( stderr, "mccaskillwrap: %d / %d\n", i+1, njob );
 			commongappick_record( 1, nogap+i, gapmap[i] );
 			if( strlen( nogap[i] ) == 0 ) 
 			{

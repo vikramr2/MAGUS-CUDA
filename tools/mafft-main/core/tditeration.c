@@ -179,7 +179,7 @@ static void Writeoptions( FILE *fp )
 		fprintf( fp, "JTT %dPAM\n", pamN );
 
 	if( scoremtx == 0 || scoremtx == 1 )
-    	fprintf( fp, "Gap Penalty = %+5.3f, %5.2f, %+5.3f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+    	fprintf( fp, "tditeration: Gap Penalty = %+5.3f, %5.2f, %+5.3f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
 	else
 		fprintf( fp, "Gap Penalty = %+5.3f\n", (double)penalty/1000 );
 		
@@ -1682,7 +1682,7 @@ int TreeDependentIteration( int locnjob, char **name, int nlen[M],
 					fprintf( stderr, "SKIP %d\n", skipthisbranch[l][k] );
 	#endif
 	#if 1
-					fprintf( stderr, "STEP %03d-%03d-%d ", iterate+1, l+1, k );
+					fprintf( stderr, "tditeration: STEP %03d-%03d-%d ", iterate+1, l+1, k );
 					fflush( stderr );
 	#else
 					fprintf( stderr, "STEP %03d-%03d-%d %s", iterate+1, l+1, k, use_fft?"\n":"\n" );

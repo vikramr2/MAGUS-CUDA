@@ -232,7 +232,8 @@ void arguments( int argc, char *argv[] )
             {
 				case 'i':
 					inputfile = *++argv;
-					reporterr(       "inputfile = %s\n", inputfile );
+					
+					reporterr(       "disttbfast.c\ninputfile = %s\n", inputfile );
 					--argc;
 					goto nextoption;
 				case 'I':
@@ -546,7 +547,7 @@ static int varpairscore( int nseq, int npick, int nlenmax, char **seq, int seed 
 	npair = npick * (npick-1) / 2;
 	for( i=1; i<npick; i++ ) 
 	{
-		reporterr( "%d / %d\r", i, npick );
+		reporterr( "disttbfast: %d / %d\r", i, npick );
 		for( j=0; j<i; j++ ) 
 		{
 			score = G__align11_noalign( n_dis_consweight_multi, -1200, -60, pickseq+i, pickseq+j, nlenmax );
@@ -3323,7 +3324,7 @@ static void WriteOptions( FILE *fp )
 		else if( scoremtx ==  1 ) fprintf( fp, "BLOSUM %d\n", nblosum );
 		else if( scoremtx ==  2 ) fprintf( fp, "M-Y\n" );
 	}
-    reporterr(       "Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+    reporterr(       "distbfast: Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
     if( use_fft ) fprintf( fp, "FFT on\n" );
 
 	fprintf( fp, "tree-base method\n" );
@@ -3338,7 +3339,7 @@ static void WriteOptions( FILE *fp )
 		fprintf( fp, "\n" );
 	}
 
-   	 fprintf( fp, "Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+   	 fprintf( fp, "distbfast: Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
 
 	if( alg == 'a' )
 		fprintf( fp, "Algorithm A\n" );

@@ -31,6 +31,7 @@ void arguments( int argc, char *argv[] )
 					goto nextoption;
 				case 'i':
 					inputfile = *++argv;
+					fprintf( stderr, "setdirection.c" );
 					fprintf( stderr, "inputfile = %s\n", inputfile );
 					--argc;
 					goto nextoption;

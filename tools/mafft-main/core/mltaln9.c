@@ -8439,7 +8439,7 @@ void veryfastsupg_double_loadtree( int nseq, double **eff, int ***topol, double 
 	reporterr(       "\n" );
     for( k=0; k<nseq-1; k++ )
     {
-		if( k % 10 == 0 ) reporterr(       "%d / %d\r", k, nseq );
+		if( k % 10 == 0 ) reporterr(       "mltaln9: %d / %d\r", k, nseq );
 
 #if 0
 		minscore = 99999.9;
@@ -8913,7 +8913,7 @@ void veryfastsupg_double_outtree( int nseq, double **eff, int ***topol, double *
 	reporterr(       "\n" );
     for( k=0; k<nseq-1; k++ )
     {
-		if( k % 10 == 0 ) reporterr(       "%d / %d\r", k, nseq );
+		if( k % 10 == 0 ) reporterr(       "mltaln9: %d / %d\r", k, nseq );
 
 		minscore = 99999.9;
 		for( i=0; ac[i].next!=-1; i=ac[i].next ) 
@@ -9105,7 +9105,7 @@ void veryfastsupg( int nseq, double **oeff, int ***topol, double **len )
 	reporterr(       "\n" );
     for( k=0; k<nseq-1; k++ )
     {
-		if( k % 10 == 0 ) reporterr(       "%d / %d\r", k, nseq );
+		if( k % 10 == 0 ) reporterr(       "mltaln: %d / %d\r", k, nseq );
 
 		minscore = INTMTXSCALE*4;
 		for( i=0; ac[i].next!=-1; i=ac[i].next ) 
@@ -9304,7 +9304,7 @@ void fastsupg( int nseq, double **oeff, int ***topol, double **len )
 	reporterr(       "\n" );
     for( k=0; k<nseq-1; k++ )
     {
-		if( k % 10 == 0 ) reporterr(       "%d / %d\r", k, nseq );
+		if( k % 10 == 0 ) reporterr(       "mltaln: %d / %d\r", k, nseq );
 
 		minscore = 9999.0;
 		for( i=0; ac[i].next!=-1; i=ac[i].next ) 
@@ -15616,7 +15616,7 @@ void fillimp( double **impmtx, double *imp, int clus1, int clus2, int lgth1, int
 				{
 					if( *pt1 != '-' && *pt2 != '-' )
 					{
-// ½Å¤ß¤òÆó½Å¤Ë¤«¤±¤Ê¤¤¤è¤¦¤ËÃí°Õ¤·¤Æ²¼¤µ¤¤¡£
+// ï¿½Å¤ß¤ï¿½ï¿½ï¿½Å¤Ë¤ï¿½ï¿½ï¿½ï¿½Ê¤ï¿½ï¿½è¤¦ï¿½ï¿½ï¿½ï¿½ï¿½Õ¤ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //						impmtx[k1][k2] += tmpptr->wimportance * fastathreshold;
 //						impmtx[k1][k2] += tmpptr->importance * effij;
 //						impmtx[k1][k2] += tmpptr->fimportance * effij;

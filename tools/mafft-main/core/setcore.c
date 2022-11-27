@@ -220,7 +220,7 @@ static void WriteOptions( FILE *fp )
 		else if( scoremtx ==  1 ) fprintf( fp, "BLOSUM %d\n", nblosum );
 		else if( scoremtx ==  2 ) fprintf( fp, "M-Y\n" );
 	}
-    fprintf( stderr, "Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+    fprintf( stderr, "setcore: Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
     if( use_fft ) fprintf( fp, "FFT on\n" );
 
 	fprintf( fp, "tree-base method\n" );
@@ -235,7 +235,7 @@ static void WriteOptions( FILE *fp )
 		fprintf( fp, "\n" );
 	}
 
-   	 fprintf( fp, "Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+   	 fprintf( fp, "setcore: Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
 
 	if( alg == 'a' )
 		fprintf( fp, "Algorithm A\n" );

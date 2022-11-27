@@ -877,6 +877,7 @@ void arguments( int argc, char *argv[] )
             {
 				case 'i':
 					inputfile = *++argv;
+					fprintf( stderr, "addsingle.c" );
 					fprintf( stderr, "inputfile = %s\n", inputfile );
 					--argc;
                     goto nextoption;
@@ -920,7 +921,7 @@ void arguments( int argc, char *argv[] )
 				case 'b':
 					nblosum = myatoi( *++argv );
 					scoremtx = 1;
-					fprintf( stderr, "blosum %d / kimura 200\n", nblosum );
+					fprintf( stderr, "addsingle blosum\nblosum %d / kimura 200\n", nblosum );
 					--argc;
 					goto nextoption;
 				case 'j':

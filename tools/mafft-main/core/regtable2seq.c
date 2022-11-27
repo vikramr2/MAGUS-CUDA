@@ -32,6 +32,7 @@ void arguments( int argc, char *argv[] )
 					goto nextoption;
 				case 'i':
 					inputfile = *++argv;
+					fprintf( stderr, "regtable2seq.c" );
 					fprintf( stderr, "inputfile = %s\n", inputfile );
 					--argc;
 					goto nextoption;

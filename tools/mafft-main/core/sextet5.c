@@ -25,6 +25,7 @@ void arguments( int argc, char *argv[] )
             {
 				case 'i':
 					inputfile = *++argv;
+					fprintf( stderr, "sextet5.c" );
 					fprintf( stderr, "inputfile = %s\n", inputfile );
 					--argc;
 					goto nextoption;

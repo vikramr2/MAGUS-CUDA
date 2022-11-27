@@ -87,7 +87,7 @@ static void	*selfdpthread( void *arg )
 #endif
 		{
 			j++;
-			if( j%100 == 0 ) reporterr( "%d / %d      \r", j, iend );
+			if( j%100 == 0 ) reporterr( "makedirectionlist: %d / %d      \r", j, iend );
 			if( j == iend ) 
 			{
 				break;
@@ -171,6 +171,7 @@ void arguments( int argc, char *argv[] )
             {
 				case 'i':
 					inputfile = *++argv;
+					fprintf( stderr, "makedirectionlist.c" );
 					fprintf( stderr, "inputfile = %s\n", inputfile );
 					--argc;
 					goto nextoption;
@@ -1071,7 +1072,7 @@ int main( int argc, char *argv[] )
 			{
 				thread_arg_t *targ;
 
-				if( i%100==1 ) fprintf( stderr, " %d / %d   \r", i, njob );
+				if( i%100==1 ) fprintf( stderr, " makedirectionlist: %d / %d   \r", i, njob );
 				targ = calloc( 1, sizeof( thread_arg_t ) );
 				targ[0].iend = iend;
 				targ[0].map = map;

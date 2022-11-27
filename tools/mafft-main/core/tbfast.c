@@ -515,7 +515,7 @@ static void arguments( int argc, char *argv[], int *pac, char **pav, int *tac, c
 					break;
 				case '+':
 					outputhat23 = myatoi( *++argv );
-					reporterr( "outputhat23=%d\n", outputhat23 );
+					reporterr( "tbfast\noutputhat23=%d\n", outputhat23 );
 					--argc;
 					goto nextoption;
                 default:
@@ -1807,7 +1807,7 @@ static void WriteOptions( FILE *fp )
 		else if( scoremtx ==  1 ) fprintf( fp, "BLOSUM %d\n", nblosum );
 		else if( scoremtx ==  2 ) fprintf( fp, "M-Y\n" );
 	}
-    fprintf( stderr, "Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+    fprintf( stderr, "tbfast: Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
     if( use_fft ) fprintf( fp, "FFT on\n" );
 
 	fprintf( fp, "tree-base method\n" );
@@ -1822,7 +1822,7 @@ static void WriteOptions( FILE *fp )
 		fprintf( fp, "\n" );
 	}
 
-   	 fprintf( fp, "Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+   	 fprintf( fp, "tbfast: Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
 
 	if( alg == 'a' )
 		fprintf( fp, "Algorithm A\n" );

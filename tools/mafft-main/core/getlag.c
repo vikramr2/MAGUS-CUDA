@@ -278,7 +278,7 @@ static void WriteOptions( FILE *fp )
 	else if( scoremtx == -1 ) fprintf( fp, "DNA\n" );
 
     if( scoremtx == 0 || scoremtx == -1 )
-        fprintf( fp, "Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
+        fprintf( fp, "getlag: Gap Penalty = %+5.2f, %+5.2f, %+5.2f\n", (double)ppenalty/1000, (double)ppenalty_ex/1000, (double)poffset/1000 );
     else
         fprintf( fp, "Gap Penalty = %+5.2f\n", (double)ppenalty/1000 );
 

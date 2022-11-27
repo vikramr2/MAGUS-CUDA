@@ -809,7 +809,7 @@ void constants( int nseq, char **seq )
 		}
 #endif
 #if 0
-/* Ãí°Õ ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 			penalty -= offset;
 #endif
 
@@ -914,7 +914,7 @@ void constants( int nseq, char **seq )
 
 		BLOSUMmtx( nblosum, n_distmp, freq, amino, amino_grp, &rescale );
 
-		reporterr( "rescale = %d\n", rescale );
+		reporterr( "constants\nrescale = %d\n", rescale );
 
 		if( trywarp ) sprintf( shiftmodel, "%4.2f", -(double)penalty_shift/600 );
 		else sprintf( shiftmodel, "noshift" );
@@ -1026,7 +1026,7 @@ void constants( int nseq, char **seq )
 		}
 #endif
 #if 0
-/* Ãí°Õ ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 			penalty -= offset;
 #endif
 
@@ -1337,7 +1337,7 @@ void constants( int nseq, char **seq )
 		}
 #endif
 #if 0
-/* Ãí°Õ ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 			penalty -= offset;
 #endif
 

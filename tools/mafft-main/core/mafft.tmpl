@@ -5,6 +5,7 @@ version="v7.510 (2022/Sep/26)"; export version
 LANG=C; export LANG
 os=`uname`
 progname=`basename "$0"`
+echo "$progname"
 windows="no"
 if [ `echo $os | grep -i cygwin` ]; then
 	os="cygwin"
@@ -140,6 +141,7 @@ elif [ $progname = "qinsi" -o $progname = "mafft-qinsi" ]; then
 	defaultkappa=" "
 	defaultfmodel="    "  # 2013/06/18
 elif [ $progname = "linsi" -o $progname = "mafft-linsi" ]; then
+	#echo "mafft-linsi"
 	defaultfft=0
 	defaultcycle=1
 	defaultiterate=1000
@@ -314,6 +316,7 @@ initialramusage="20GB"
 focusarg=" "
 lhlimit=" "
 mpiscript="/dev/null"
+echo "$#"
 if [ $# -gt 0 ]; then
 	if [ "$1" = "--version" ]; then
 		echo "$version" 1>&2
@@ -325,30 +328,41 @@ if [ $# -gt 0 ]; then
 	while [ $# -gt 1 ];
 	do
 		if [ "$1" = "--auto" ]; then 
+			echo "$1"
 			auto=1
 		elif [ "$1" = "--anysymbol" ]; then 
+#			echo "$1"
 			anysymbol=1
 		elif [ "$1" = "--preservecase" ]; then 
+			echo "$1"
 			anysymbol=1
 		elif [ "$1" = "--clustalout" ]; then 
+			echo "$1"
 			outputformat="clustal"
 		elif [ "$1" = "--phylipout" ]; then 
+			echo "$1"
 			outputformat="phylip"
 		elif [ "$1" = "--reorder" ]; then 
+			echo "$1"
 			outorder="aligned"
 			partorderopt=" "
 		elif [ "$1" = "--inputorder" ]; then 
+			echo "$1"
 			outorder="input"
 			partorderopt=" -x "
 		elif [ "$1" = "--unweight" ]; then 
+			echo "$1"
 			weightopt=" -u "
 		elif [ "$1" = "--termgappenalty" ]; then 
+			echo "$1"
 			termgapopt=" "
 		elif [ "$1" = "--alga" ]; then 
+			echo "$1"
 			algopt=" "
 			algoptit=" "
 #			algspecified=1
 		elif [ "$1" = "--algq" ]; then 
+			echo "$1"
 			algopt=" -Q "
 			algoptit=" "
 			echo "" 1>&2
@@ -357,6 +371,7 @@ if [ $# -gt 0 ]; then
 			exit 1;
 #			algspecified=1
 		elif [ "$1" = "--linelength" ]; then 
+			echo "$1"
 			shift   
 			linelength=`expr "$1" - 0`
 			if [ $linelength -eq 0 ]; then
@@ -364,6 +379,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--namelength" ]; then 
+			echo "$1"
 			shift   
 			namelength=`expr "$1" - 0`
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -371,6 +387,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--groupsize" ]; then 
+			echo "$1"
 			shift   
 			groupsize=`expr "$1" - 0`
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -378,6 +395,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--partsize" ]; then 
+			echo "$1"
 			shift   
 			partsize=`expr "$1" - 0`
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -385,44 +403,57 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--parttree" ]; then 
+			echo "$1"
 			distance="parttree"
 			partdist="ktuples"
 		elif [ "$1" = "--dpparttree" ]; then 
+			echo "$1"
 			distance="parttree"
 			partdist="localalign"
 		elif [ "$1" = "--fastaparttree" ]; then 
+			echo "$1"
 			distance="parttree"
 			partdist="fasta"
 		elif [ "$1" = "--treeout" ]; then 
+			echo "$1"
 			treeout=1
 		elif [ "$1" = "--nodeout" ]; then 
+			echo "$1"
 			nodeout=1
 			treeout=1
 		elif [ "$1" = "--distout" ]; then 
+			echo "$1"
 			distout=1
 		elif [ "$1" = "--fastswpair" ]; then
+			echo "$1"
 			distance="fasta"
 			pairspecified=1
 			sw=1
 		elif [ "$1" = "--fastapair" ]; then
+			echo "$1"
 			distance="fasta"
 			pairspecified=1
 			sw=0
 		elif [ "$1" = "--averagelinkage" ]; then
+			echo "$1"
 			treealg=" -X 1.0 "
 			sueff="1.0"
 		elif [ "$1" = "--minimumlinkage" ]; then
+			echo "$1"
 			treealg=" -X 0.0 "
 			sueff="0.0"
 		elif [ "$1" = "--mixedlinkage" ]; then
+			echo "$1"
 			shift   
 			sueff="$1"
 			treealg=" -X $1"
 		elif [ "$1" = "--maxambiguous" ]; then
+			echo "$1"
 			shift   
 			maxambiguous="$1"
 			dofilter=1
 		elif [ "$1" = "--codonpos" ]; then
+			echo "$1"
 			shift   
 			codonposfile="$1"
 			if [ ! -e "$codonposfile" ]; then
@@ -432,6 +463,7 @@ if [ $# -gt 0 ]; then
 			fi
 			codonposopt=" -R "
 		elif [ "$1" = "--codonscore" ]; then
+			echo "$1"
 			shift   
 			codonscorefile="$1"
 			if [ ! -e "$codonscorefile" ]; then
@@ -441,33 +473,42 @@ if [ $# -gt 0 ]; then
 			fi
 			codonscoreopt=" -S "
 		elif [ "$1" = "--noscore" ]; then
+			echo "$1"
 			scorecalcopt=" -Z "
 		elif [ "$1" = "--6mermultipair" ]; then
+			echo "$1"
 			distance="ktuplesmulti"
 			tuplesize=6
 			pairspecified=1
 		elif [ "$1" = "--10mermultipair" ]; then
+			echo "$1"
 			distance="ktuplesmulti"
 			tuplesize=10
 			pairspecified=1
 		elif [ "$1" = "--6merpair" ]; then
+			echo "$1"
 			distance="ktuples"
 			tuplesize=6
 			pairspecified=1
 		elif [ "$1" = "--10merpair" ]; then
+			echo "$1"
 			distance="ktuples"
 			tuplesize=10
 			pairspecified=1
 		elif [ "$1" = "--blastpair" ]; then
+			echo "$1"
 			distance="blast"
 			pairspecified=1
 		elif [ "$1" = "--lastmultipair" ]; then
+			echo "$1"
 			distance="lastmulti"
 			pairspecified=1
 		elif [ "$1" = "--globalpair" ]; then
+			echo "$1"
 			distance="global"
 			pairspecified=1
 		elif [ "$1" = "--shortlongpair" ]; then
+			echo "$1"
 			distance="local"
 			usenaivepairscore="-Z"
 			laof=0.0  # addfull no tokini tsukawareru.
@@ -476,6 +517,7 @@ if [ $# -gt 0 ]; then
 			pgexp=0.0 # local nara iranai
 			pairspecified=1
 		elif [ "$1" = "--longshortpair" ]; then
+			echo "$1"
 			distance="local"
 			usenaivepairscore="-Z"
 			laof=0.0  # addfull no tokini tsukawareru.
@@ -484,39 +526,51 @@ if [ $# -gt 0 ]; then
 			pgexp=0.0 # local nara iranai
 			pairspecified=1
 		elif [ "$1" = "--localpair" ]; then
+			echo "$1"
 			distance="local"
 			pairspecified=1
 		elif [ "$1" = "--lastpair" ]; then
+			echo "$1"
 			distance="last"
 			pairspecified=1
 		elif [ "$1" = "--multipair" ]; then
+			echo "$1"
 			distance="multi"
 			pairspecified=1
 		elif [ "$1" = "--hybridpair" ]; then
+			echo "$1"
 			distance="hybrid"
 			pairspecified=1
 		elif [ "$1" = "--scarnapair" ]; then
+			echo "$1"
 			distance="scarna"
 			pairspecified=1
 		elif [ "$1" = "--dafspair" ]; then
+			echo "$1"
 			distance="dafs"
 			pairspecified=1
 		elif [ "$1" = "--larapair" ]; then
+			echo "$1"
 			distance="lara"
 			pairspecified=1
 		elif [ "$1" = "--slarapair" ]; then
+			echo "$1"
 			distance="slara"
 			pairspecified=1
 		elif [ "$1" = "--foldalignpair" ]; then
+			echo "$1"
 			distance="foldalignlocal"
 			pairspecified=1
 		elif [ "$1" = "--foldalignlocalpair" ]; then
+			echo "$1"
 			distance="foldalignlocal"
 			pairspecified=1
 		elif [ "$1" = "--foldalignglobalpair" ]; then
+			echo "$1"
 			distance="foldalignglobal"
 			pairspecified=1
 		elif [ "$1" = "--globalgenafpair" ]; then
+			echo "$1"
 			distance="globalgenaf"
 			pairspecified=1
 			echo "" 1>&2
@@ -524,47 +578,64 @@ if [ $# -gt 0 ]; then
 			echo "" 1>&2
 			exit 1;
 		elif [ "$1" = "--localgenafpair" ]; then
+			echo "$1"
 			distance="localgenaf"
 			pairspecified=1
 		elif [ "$1" = "--genafpair" ]; then
+			echo "$1"
 			distance="localgenaf"
 			pairspecified=1
 		elif [ "$1" = "--oldgenafpair" ]; then
+			echo "$1"
 			distance="localgenaf"
 			pairspecified=1
 			oldgenafparam=1
 		elif [ "$1" = "--memsave" ]; then
+			echo "$1"
 			memopt=" -M -B "         # -B (bunkatsunashi no riyu ga omoidasenai)
 		elif [ "$1" = "--nomemsave" ]; then
+			echo "$1"
 			memopt=" -N "
 		elif [ "$1" = "--nuc" ]; then 
+			echo "$1"
 			seqtype="-D" # Deleted space, 2018/Dec
 		elif [ "$1" = "--amino" ]; then 
+			echo "$1"
 			seqtype="-P" # Deleted space, 2018/Dec
 		elif [ "$1" = "--fft" ]; then 
+			echo "$1"
 			fft=1
 			forcefft=1
 		elif [ "$1" = "--nofft" ]; then 
+			echo "$1"
 			fft=0
 		elif [ "$1" = "--quiet" ]; then 
+			echo "$1"
 #			if [ $os = "msys" ]; then
 #				progressfile="nul"
 #			else
 				progressfile="/dev/null"
 #			fi
 		elif [ "$1" = "--debug" ]; then 
+			echo "$1"
 			debug=1
 		elif [ "$1" = "--coreext" ]; then 
+			echo "$1"
 			coreext=" -c "
 		elif [ "$1" = "--core" ]; then 
+			echo "$1"
 			coreout=1
 		elif [ "$1" = "--adjustdirection" ]; then 
+			echo "$1"
 			adjustdirection=1
 		elif [ "$1" = "--adjustdirectionaccurately" ]; then 
+			echo "$1"
 			adjustdirection=2
 		elif [ "$1" = "--oneiteration" ]; then 
+			echo "$1"
 			oneiterationopt=" -r "
 		elif [ "$1" = "--progress" ]; then 
+			echo "$1"
 			shift   
 			progressfile="$1"
 			if ! ( expr "$progressfile" : "\/" > /dev/null || expr "$progressfile" : "[A-Za-z]\:" > /dev/null ) ; then
@@ -572,9 +643,11 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--out" ]; then 
+			echo "$1"
 			shift   
 			outputfile="$1"
 		elif [ "$1" = "--skipanchorsremoterthan" ]; then 
+			echo "$1"
 			shift   
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
 				echo "Specify maximum gap length between anchors." 1>&2
@@ -582,6 +655,7 @@ if [ $# -gt 0 ]; then
 			fi
 			maxanchorseparation=`expr "$1" - 0` 
 		elif [ "$1" = "--anchors" ]; then 
+			echo "$1"
 			shift
 			anchorfile="$1"
 			anchoropt=" -l "
@@ -593,6 +667,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--thread" ]; then 
+			echo "$1"
 			shift
 			if ! expr "$1" : "[0-9\-]" > /dev/null ; then
 				echo "Specify the number of threads.  Or, use --thread -1" 1>&2
@@ -600,6 +675,7 @@ if [ $# -gt 0 ]; then
 			fi
 			numthreads=`expr "$1" - 0` 
 		elif [ "$1" = "--threadtb" ]; then 
+			echo "$1"
 			shift
 			if ! expr "$1" : "[0-9\-]" > /dev/null ; then
 				echo "Check the argument after --threadtb, the number of threads for the progressive step." 1>&2
@@ -607,6 +683,7 @@ if [ $# -gt 0 ]; then
 			fi
 			numthreadstb=`expr "$1" - 0` 
 		elif [ "$1" = "--threadit" ]; then 
+			echo "$1"
 			shift
 			if ! expr "$1" : "[0-9\-]" > /dev/null ; then
 				echo "Check the argument after --threadit, the number of threads for the iterative step." 1>&2
@@ -614,37 +691,52 @@ if [ $# -gt 0 ]; then
 			fi
 			numthreadsit=`expr "$1" - 0` 
 		elif [ "$1" = "--last_subopt" ]; then 
+			echo "$1"
 			last_subopt="-S"
 		elif [ "$1" = "--last_once" ]; then 
+			echo "$1"
 			last_once="-U"
 		elif [ "$1" = "--last_m" ]; then 
+			echo "$1"
 			shift
 			last_m=`expr "$1" - 0` 
 		elif [ "$1" = "--last_e" ]; then 
+			echo "$1"
 			shift
 			last_e=`expr "$1" - 0` 
 		elif [ "$1" = "--randomseed" ]; then 
+			echo "$1"
 			shift
 			randomseed=`expr "$1" - 0` 
 		elif [ "$1" = "--bestfirst" ]; then 
+			echo "$1"
 			parallelizationstrategy="BESTFIRST"
 		elif [ "$1" = "--adhoc0" ]; then 
+			echo "$1"
 			parallelizationstrategy="BAATARI0"
 		elif [ "$1" = "--adhoc1" ]; then 
+			echo "$1"
 			parallelizationstrategy="BAATARI1"
 		elif [ "$1" = "--adhoc2" ]; then 
+			echo "$1"
 			parallelizationstrategy="BAATARI2"
 		elif [ "$1" = "--simplehillclimbing" ]; then 
+			echo "$1"
 			parallelizationstrategy="BAATARI2"
 		elif [ "$1" = "--scoreout" ]; then 
+			echo "$1"
 			scoreoutarg="-S -B"
 		elif [ "$1" = "--outnum" ]; then 
+			echo "$1"
 			outnum="-n"
 		elif [ "$1" = "--leavegappyregion" ]; then 
+			echo "$1"
 			legacygapopt="-L"
 		elif [ "$1" = "--legacygappenalty" ]; then 
+			echo "$1"
 			legacygapopt="-L"
 		elif [ "$1" = "--merge" ]; then
+			echo "$1"
 			shift
 			mergetable="$1"
 			if [ ! -e "$mergetable" ]; then
@@ -653,57 +745,71 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--addprofile" ]; then 
+			echo "$1"
 			shift   
 			addarg0="-I"
 			addfile="$1"
 		elif [ "$1" = "--add" ]; then 
+			echo "$1"
 			shift   
 			addarg0="-K -I"
 			addfile="$1"
 		elif [ "$1" = "--addfragments" ]; then 
+			echo "$1"
 			shift   
 			addarg0="-K -I"
 			addfile="$1"
 			fragment=1
 		elif [ "$1" = "--addfull" ]; then 
+			echo "$1"
 			shift   
 			addarg0="-K -I"
 			addfile="$1"
 			fragment=-1
 		elif [ "$1" = "--addlong" ]; then 
+			echo "$1"
 			shift   
 			addarg0="-K -I"
 			addfile="$1"
 			fragment=-2
 		elif [ "$1" = "--addtotop" ]; then 
+			echo "$1"
 			shift   
 			addarg0="-K -I"
 			addfile="$1"
 			fragment=-3
 		elif [ "$1" = "--smoothing" ]; then 
+			echo "$1"
 			add2ndhalfarg=$add2ndhalfarg" -p "
 		elif [ "$1" = "--keeplength" ]; then 
+			echo "$1"
 			add2ndhalfarg=$add2ndhalfarg" -Y "
 		elif [ "$1" = "--compactmapout" ]; then 
+			echo "$1"
 			add2ndhalfarg=$add2ndhalfarg" -z -Y "
 		elif [ "$1" = "--compactmapoutfile" ]; then 
+			echo "$1"
 			shift
 			add2ndhalfarg=$add2ndhalfarg" -z -Y "
 			mapoutfile="$1"
 		elif [ "$1" = "--mapout" ]; then 
+			echo "$1"
 			add2ndhalfarg=$add2ndhalfarg" -Z -Y "
 		elif [ "$1" = "--mapoutfile" ]; then 
+			echo "$1"
 			shift
 			add2ndhalfarg=$add2ndhalfarg" -Z -Y "
 			mapoutfile="$1"
 		elif [ "$1" = "--maxiterate" ]; then 
+			echo "$1"
 			shift   
 			iterate=`expr "$1" - 0` 
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
 				echo "Specify the number of iterations!" 1>&2
 				exit
 			fi
-		elif [ "$1" = "--retree" ]; then 
+		elif [ "$1" = "--retree" ]; then 	
+			echo "$1"
 			shift   
 			cycle=`expr "$1" - 0`
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -711,6 +817,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--aamatrix" ]; then 
+			echo "$1"
 			shift   
 			f2clext="-N"
 			sbstmodel=" -b -1 "
@@ -721,6 +828,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--textmatrix" ]; then 
+			echo "$1"
 			shift   
 			f2clext="-E"
 			seqtype="-P"
@@ -734,11 +842,13 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--text" ]; then 
+			echo "$1"
 			f2clext="-E"
 			seqtype="-P"
 			fft=0
 			sbstmodel=" -b -2 -a "
 		elif [ "$1" = "--treein" ]; then 
+			echo "$1"
 			shift   
 			treeinopt=" -U "
 			treein=1
@@ -749,15 +859,18 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--pileup" ]; then 
+			echo "$1"
 #			treeinopt=" -U "
 #			treein=1
 			treeext="pileup"
 		elif [ "$1" = "--randomchain" ]; then 
+			echo "$1"
 #			treeinopt=" -U "
 #			treein=1
 #			pileuporshuffle="s"
 			treeext="randomchain"
 		elif [ "$1" = "--topin" ]; then 
+			echo "$1"
 			shift   
 			treeinopt=" -V "
 			treein=1
@@ -767,18 +880,25 @@ if [ $# -gt 0 ]; then
 			echo "This bug has not yet been fixed."      1>&2
 			exit 1
 		elif [ "$1" = "--mpi" ]; then 
+			echo "$1"
 			mpiscript="$prefix/mpiscript"
 		elif [ "$1" = "--large" ]; then
+			echo "$1"
 			treeext="memsavetree"
 		elif [ "$1" = "--memsavetree" ]; then
+			echo "$1"
 			treeext="memsavetree"
 		elif [ "$1" = "--memsavetreex" ]; then
+			echo "$1"
 			treeext="memsavetreex"
 		elif [ "$1" = "--stepadd" ]; then
+			echo "$1"
 			treeext="stepadd"
 		elif [ "$1" = "--youngestlinkage" ]; then
+			echo "$1"
 			treeext="youngestlinkage"
 		elif [ "$1" = "--kappa" ]; then 
+			echo "$1"
 			shift   
 			kappa=" -k $1 "
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -786,12 +906,16 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--fmodel" ]; then 
+			echo "$1"
 			fmodel=" -a "
 		elif [ "$1" = "--nwildcard" ]; then 
+			echo "$1"
 			nmodel=" -: "
 		elif [ "$1" = "--nzero" ]; then 
+			echo "$1"
 			nmodel="  "
 		elif [ "$1" = "--jtt" ]; then 
+			echo "$1"
 			shift   
 			f2clext="-N"
 			sbstmodel=" -j $1"
@@ -800,6 +924,7 @@ if [ $# -gt 0 ]; then
 #				exit
 #			fi
 		elif [ "$1" = "--kimura" ]; then 
+			echo "$1"
 			shift   
 			f2clext="-N"
 			sbstmodel=" -j $1"
@@ -808,6 +933,7 @@ if [ $# -gt 0 ]; then
 #				exit
 #			fi
 		elif [ "$1" = "--tm" ]; then 
+			echo "$1"
 			shift   
 			f2clext="-N"
 			sbstmodel=" -m $1"
@@ -816,6 +942,7 @@ if [ $# -gt 0 ]; then
 #				exit
 #			fi
 		elif [ "$1" = "--bl" ]; then 
+			echo "$1"
 			shift   
 			f2clext="-N"
 			sbstmodel=" -b $1"
@@ -824,6 +951,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--weighti" ]; then
+			echo "$1"
 			shift   
 			weighti="$1"
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -831,6 +959,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--weightr" ]; then
+			echo "$1"
 			shift   
 			weightr="$1"
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -838,6 +967,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--weightm" ]; then
+			echo "$1"
 			shift   
 			weightm="$1"
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -845,22 +975,28 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--rnaalifold" ]; then
+			echo "$1"
 			rnaalifold=1
 		elif [ "$1" = "--mccaskill" ]; then
+			echo "$1"
 			mccaskill=1
 			contrafold=0
 			dafs=0
 		elif [ "$1" = "--contrafold" ]; then
+			echo "$1"
 			mccaskill=0
 			contrafold=1
 			dafs=0
 		elif [ "$1" = "--dafs" ]; then
+			echo "$1"
 			mccaskill=0
 			contrafold=0
 			dafs=1
 		elif [ "$1" = "--ribosum" ]; then
+			echo "$1"
 			rnascoremtx=" -s "
 		elif [ "$1" = "--op" ]; then 
+			echo "$1"
 			shift   
 			gop="$1"
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -868,6 +1004,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--opdist" ]; then 
+			echo "$1"
 			shift   
 			gopdist="$1"
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -876,8 +1013,10 @@ if [ $# -gt 0 ]; then
 			fi
 			opdistspecified=1
 		elif [ "$1" = "--allowshift" ]; then 
+			echo "$1"
 			allowshift=1
 		elif [ "$1" = "--shiftpenalty" ]; then 
+			echo "$1"
 			shift   
 			spfactor="$1"
 			if ! expr "$1" : "[0-9]" > /dev/null ; then
@@ -886,6 +1025,7 @@ if [ $# -gt 0 ]; then
 			fi
 			shiftpenaltyspecified=1
 		elif [ "$1" = "--exp" ]; then 
+			echo "$1"
 			shift   
 #			gexp="$1"
 			tmpval="$1"
@@ -896,6 +1036,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--ep" ]; then 
+#			echo "$1"
 			shift   
 #			aof="$1"
 			tmpval="$1"
@@ -906,55 +1047,72 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--rop" ]; then 
+			echo "$1"
 			shift   
 			rgop="$1"
 # Atode check
 		elif [ "$1" = "--rep" ]; then 
+			echo "$1"
 			shift   
 			rgep="$1"
 		elif [ "$1" = "--lop" ]; then 
+			echo "$1"
 			shift   
 			lgop="$1"
 		elif [ "$1" = "--LOP" ]; then 
+			echo "$1"
 			shift   
 			LGOP="$1"
 		elif [ "$1" = "--lep" ]; then 
+			echo "$1"
 			shift   
 			laof="$1"
 		elif [ "$1" = "--lexp" ]; then 
+			echo "$1"
 			shift   
 			lexp="$1"
 		elif [ "$1" = "--LEXP" ]; then 
+			echo "$1"
 			shift   
 			LEXP="$1"
 		elif [ "$1" = "--GEXP" ]; then 
+			echo "$1"
 			shift   
 			GEXP="$1"
 		elif [ "$1" = "--GOP" ]; then 
+			echo "$1"
 			shift   
 			GGOP="$1"
 		elif [ "$1" = "--gop" ]; then 
+			echo "$1"
 			shift   
 			pggop="$1"
 		elif [ "$1" = "--gep" ]; then 
+			echo "$1"
 			shift   
 			pgaof="$1"
 		elif [ "$1" = "--gexp" ]; then 
+			echo "$1"
 			shift   
 			pgexp="$1"
 		elif [ "$1" = "--laraparams" ]; then 
+			echo "$1"
 			shift   
 			laraparams="$1"
 		elif [ "$1" = "--corethr" ]; then 
+			echo "$1"
 			shift   
 			corethr="$1"
 		elif [ "$1" = "--corewin" ]; then 
+			echo "$1"
 			shift   
 			corewin="$1"
 		elif [ "$1" = "--strdir" ]; then
+			echo "$1"
 			shift
 			strdir="$1"
 		elif [ "$1" = "--pdbidlist" ]; then
+			echo "$1"
 			echo "--pdbidlist is temporarily unavailable, 2018/Dec." 1>&2
 			echo "" 1>&2
 			exit
@@ -966,6 +1124,7 @@ if [ $# -gt 0 ]; then
 				exit
 			fi
 		elif [ "$1" = "--pdbfilelist" ]; then
+			echo "$1"
 			echo "--pdbfilelist is temporarily unavailable, 2018/Dec." 1>&2
 			echo "" 1>&2
 			exit
@@ -992,6 +1151,7 @@ if [ $# -gt 0 ]; then
 #			enrichstr=1
 #			seektarget="-str"
 		elif [ "$1" = "--dash" ]; then
+			echo "$1"
 			newdash=1
 			if [ "$distance" != "local" -a "$distance" != "localgenaf" ]; then # 2021/Oct
 				distance="global"
@@ -1000,50 +1160,66 @@ if [ $# -gt 0 ]; then
 				iterate=3
 			fi
 		elif [ "$1" = "--dashserver" ]; then
+			echo "$1"
 			shift
 			dashserver="$1"
 		elif [ "$1" = "--originalseqonly" ]; then
+			echo "$1"
 			newdash_originalsequenceonly=1
 		elif [ "$1" = "--excludehomologs" ]; then # works with --dash only
+			echo "$1"
 			exclude_ho=1
 		elif [ "$1" = "--seedtable" ]; then
+			echo "$1"
 			shift
 			seedtable="y"
 			seedtablefile="$1"
 		elif [ "$1" = "--seed" ]; then
+			echo "$1"
 			shift
 			seed="m"
 			seedfiles="$seedfiles $1"
 		elif [ "$1" = "--minimumweight" ]; then
+			echo "$1"
 			shift
 			minimumweight="$1"
 		elif [ "$1" = "--similaritylevel" ]; then
+			echo "$1"
 			shift
 			similarityoffset="$1"
 		elif [ "$1" = "--unalignlevel" ]; then
+			echo "$1"
 			shift
 			unalignlevel="$1"
 			unalignspecified=1
 		elif [ "$1" = "--skipiterate" ]; then
+			echo "$1"
 			shift
 			fixthreshold="$1"
 		elif [ "$1" = "--bunkatsunashi" ]; then
+			echo "$1"
 			bunkatsuopt=" -B "
 		elif [ "$1" = "--sp" ]; then
+			echo "$1"
 			sprigorous=1
 		elif [ "$1" = "--focus" ]; then
+			echo "$1"
 			focusarg=" -= "
 		elif [ "$1" = "--lhlimit" ]; then # atode namae henkou
+			echo "$1"
 			shift
 			lhlimit=" -q $1 "
 		elif [ "$1" = "--sparsepickup" ]; then
+			echo "$1"
 			shift
 			npickup="$1"
 		elif [ $progname = "fftns" -o  $progname = "nwns" ]; then
+			echo "$1"
 			if [ "$1" -gt 0 ]; then
 				cycle=`expr "$1" - 0`
 			fi
 		else
+			echo "$1"
 			echo "Unknown option:  $1" 1>&2
 			er=1;
 #			exit 1;
@@ -1064,7 +1240,7 @@ if [ $# -gt 0 ]; then
 			fi
 		fi
 	fi
-
+	
 
 	if [ ! "$MAFFT_TMPDIR" ]; then
 		MAFFT_TMPDIR="$TMPDIR"
@@ -1089,6 +1265,7 @@ if [ $# -gt 0 ]; then
 
 
 function removetmpfile() { # for MPI
+	echo "MPI"
 	while true
 	do
 		rm -rf "$TMPFILE" && break
@@ -1107,7 +1284,6 @@ function removetmpfile() { # for MPI
 	fi
 	if [ $# -eq 1 ]; then
 		if [ -r "$1" -o "$1" = - ]; then
-
 			if [ -r "$addfile" ]; then
 				printf '';
 			else
@@ -1115,7 +1291,6 @@ function removetmpfile() { # for MPI
 				echo "" 1>&2
 				exit 1;
 			fi
-
 
 			cat "$1"              | tr "\r" "\n" > "$TMPFILE/infile"
 			echo ""                             >> "$TMPFILE/infile"
@@ -1181,7 +1356,6 @@ $ownlist"
 #			ls $TMPFILE
 #			echo $seedfilesintmp
 #			echo $seednseq
-
 
 		else
 			echo "$0": Cannot open "$1". 1>&2
@@ -1258,7 +1432,6 @@ $ownlist"
 
 
 	if [ "$addarg0" != " " ]; then
-
 #		iterate=0  # 2013/03/23 -> commented out, 2017/12
 		"$prefix/countlen" < "$TMPFILE/_addfile" > "$TMPFILE/addsize" 2>>"$progressfile"
 		nadd=`awk '{print $1}' "$TMPFILE/addsize"`
@@ -1399,11 +1572,13 @@ $ownlist"
 	fi
 
 	if [ `awk "BEGIN {print( 0.0+\"$sueff\" < 0.0 || 0.0+\"$sueff\" > 1.0 )}"` -gt 0 ]; then
+		#echo "sueff if statement"
 		printf "\n%s\n\n" "The argument of --mixedlinkage must be between 0.0 and 1.0" 1>>"$progressfile"
 		exit 1;
 	fi
 
 	if [ `awk "BEGIN {print( 0.0+\"$maxambiguous\" < 0.0 || 0.0+\"$maxambiguous\" > 1.0 )}"` -gt 0 ]; then
+		#echo "maxambiguous if statement"
 		printf "\n%s\n\n" "The argument of --maxambiguous must be between 0.0 and 1.0" 1>>"$progressfile"
 		exit 1;
 	fi
@@ -1496,12 +1671,12 @@ $ownlist"
 	laof=`awk "BEGIN{print 0.0 + \"$similarityoffset\" + $laof}"`
 	pgaof=`awk "BEGIN{print 0.0 + \"$similarityoffset\" + $pgaof}"`
 
-
 	if [ $parallelizationstrategy = "BESTFIRST" -o  $parallelizationstrategy = "BAATARI0" ]; then
 		iteratelimit=254
 	else
 		iteratelimit=16
 	fi
+
 	if [ $iterate -gt $iteratelimit ]; then    #??
 		iterate=$iteratelimit
 	fi
@@ -1923,7 +2098,6 @@ $ownlist"
 			cycle=1
 		fi
 	fi
-
 
 	if [ $distance = "localgenaf" -o $distance = "globalgenaf" ]; then
 		aof="0.000"
@@ -2846,6 +3020,7 @@ BEGIN {
 	prefix = ENVIRON["prefix"];
 	version = ENVIRON["version"];
 	myself = ENVIRON["myself"];
+	printf("%s\n", myself);
 	pwd = ENVIRON["mafft_working_dir"];  # from mafft.bat on windows
 	if( pwd == "" ) pwd = ENVIRON["PWD"];
 	while( 1 )

@@ -1,0 +1,77 @@
+For Reference
+
+(inputfile = orig
+36 x 509 - 180 p) -> replaceu.c
+
+(outputhat23=16
+treein = 0
+compacttree = 0) -> tbfast.c
+
+(stacksize: 8192 kb) -> io.c
+
+(rescale = 1) -> constants
+(All-to-all alignment.) -> pairlocalalign.c
+
+(tbfast-pair (aa) Version 7.510
+alg=L, model=BLOSUM62, 2.00, -0.10, +0.10, noshift, amax=0.0
+0 thread(s)) -> mltaln.h
+
+(outputhat23=16
+Loading 'hat3.seed' ... 
+done.
+Writing hat3 for iterative refinement) -> tbfast.c
+
+(rescale = 1) -> constants.c
+
+(Gap Penalty = -1.53, +0.00, -0.12
+tbutree = 1, compacttree = 0
+Constructing a UPGMA tree ... 
+   30 / 36
+done.
+
+Progressive alignment ... 
+STEP    34 /35 
+Reallocating..done. *alloclen = 2106
+STEP    35 /35 
+done.) -> tbfast.c
+
+(tbfast (aa) Version 7.510
+alg=A, model=BLOSUM62, 1.53, +0.12, -0.00, noshift, amax=0.0
+1 thread(s)) -> mltaln.h
+
+(minimumweight = 0.000010
+autosubalignment = 0.000000
+nthread = 0
+randomseed = 0
+blosum 62 / kimura 200
+poffset = -123
+niter = 16
+sueff_global = 0.100000
+nadd = 16
+Loading 'hat3' ... done.) -> dvtditr.c
+
+(rescale = 1) -> constants.c
+
+   30 / 36
+(Segment   1/  1    1- 704) -> dvtditr.c
+
+(STEP 003-030-0  identical.   
+Converged.) -> tditeration.c
+
+done
+
+(dvtditr (aa) Version 7.510
+alg=A, model=BLOSUM62, 1.53, +0.12, -0.00, noshift, amax=0.0
+0 thread(s)) -> mltaln.h
+
+
+(Strategy:
+ L-INS-i (Probably most accurate, very slow)
+ Iterative refinement method (<16) with LOCAL pairwise alignment information
+
+If unsure which option to use, try 'mafft --auto input > output'.
+For more information, see 'mafft --help', 'mafft --man' and the mafft page.
+
+The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
+It tends to insert more gaps into gap-rich regions than previous versions.
+To disable this change, add the --leavegappyregion option.) -> mafft.tmpl

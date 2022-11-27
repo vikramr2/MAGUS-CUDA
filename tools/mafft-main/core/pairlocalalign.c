@@ -843,7 +843,7 @@ static void *lastcallthread( void *arg )
 		{
 			k++;
 			if( k == nq ) break;
-			fprintf( stderr, "\r%d / %d                    \r", k, nq );
+			fprintf( stderr, "\rpairlocalalign: %d / %d                    \r", k, nq );
 		}
 
 		if( alg == 'R' ) // if 'r' -> calllast_fast
@@ -2520,7 +2520,7 @@ static void pairalign( char **name, int *nlen, char **seq, char **aseq, char **d
 
 //	writePre( njob, name, nlen, aseq, 0 );
 
-	reporterr( "All-to-all alignment.\n" );
+	reporterr( "Pairlocalalign: All-to-all alignment.\n" );
 	if( alg == 'R' )
 	{
 		fprintf( stderr, "Calling last (http://last.cbrc.jp/)\n" );

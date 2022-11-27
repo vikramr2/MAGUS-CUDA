@@ -31,8 +31,10 @@ void arguments( int argc, char *argv[] )
 
     while( --argc > 0 && (*++argv)[0] == '-' )
 	{
+		//fprintf(stderr, "\n");
         while ( (c = *++argv[0]) )
 		{
+			//fprintf(stderr, "%c\n", c);
             switch( c )
             {
 				case 'o':
@@ -57,6 +59,7 @@ void arguments( int argc, char *argv[] )
                     break;
             }
 		}
+		//fprintf(stderr, "\n");
 		nextoption:
 			;
 	}
@@ -125,7 +128,6 @@ int main( int argc, char *argv[] )
 	}
 	fclose( origfp );
 #endif
-
 	if( dorp == 'p' )
 	{
 		usual = "ARNDCQEGHILKMFPSTWYVarndcqeghilkmfpstwyv-.";
