@@ -86,6 +86,4 @@ int main(int argc, char* argv[]) {
     replaceu(unaligned, unaligned_charlen, inputfile, &dorp, &njob, &nlenmax, &nlenmin);
 
     fprintf(stderr, "dorp:\t%c\nnjob:\t%d\nnlenmax:\t%d\nnlenmin:\t%d\n", dorp, njob, nlenmax, nlenmin);
-
-    //fprintf(stderr, "%s", extract_file_contents(inputfile));
 }

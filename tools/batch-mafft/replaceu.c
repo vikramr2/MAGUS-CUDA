@@ -19,7 +19,6 @@ static void replace_unusual( int n, char **seq, char *usual, char unknown, int (
 }
 
 void replaceu(char* unaligned, int unaligned_charlen, char* inputfile, char* dorp, int* njob, int* nlenmax, int* lenmin) {
-    //FILE *infp;
 	int nlenmin;
 	char **name;
 	char **seq;
@@ -30,7 +29,6 @@ void replaceu(char* unaligned, int unaligned_charlen, char* inputfile, char* dor
     seedoffset = 0;
 	*dorp = NOTSPECIFIED;
 
-	//infp = fopen( inputfile, "r" );
 	getnumlen_casepreserve( unaligned, unaligned_charlen, &nlenmin, dorp, njob, nlenmax);
 
 	seq = AllocateCharMtx( *njob, (*nlenmax)+1 );
@@ -38,7 +36,6 @@ void replaceu(char* unaligned, int unaligned_charlen, char* inputfile, char* dor
 	nlen = AllocateIntVec( *njob );
 
 	readData_pointer_casepreserve( unaligned, unaligned_charlen, name, nlen, seq, *njob );
-	//fclose( infp );
 
 	if( *dorp == 'p' )
 	{

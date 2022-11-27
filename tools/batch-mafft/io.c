@@ -74,15 +74,6 @@ static int countKUorWA( char* unaligned, int unaligned_charlen )
 	return( value );
 }
 
-/*void searchKUorWA( FILE *fp )
-{
-	int c, b;
-	b = '\n';
-	while( !( ( ( c = getc( fp ) ) == '>' || c == EOF ) && b == '\n' ) )
-		b = c;
-	ungetc( c, fp );
-}*/
-
 void searchKUorWA(char* unaligned, int unaligned_charlen, int* index) {
 	int c, b, i;
 	b = '\n';
@@ -93,22 +84,6 @@ void searchKUorWA(char* unaligned, int unaligned_charlen, int* index) {
 	}
 	*index = i;
 }
-
-/*int myfgets(s, l, fp)
-char    s[] ; int l ; FILE *fp ;
-{
-    int c = 0, i = 0;
-
-    if( feof( fp ) ) return( 1 );
-
-    for( i=0; i<l && ( c=getc( fp ) ) != '\n'; i++ ) 
-        *s++ = c;
-    *s = '\0' ;
-    if( c != '\n' ) 
-        while( getc(fp) != '\n' )
-            ;
-    return( 0 );
-}*/
 
 int myfgets(char s[], int l, char* unaligned, int unaligned_charlen, int* index) {
 	int c = 0, i = 0;
@@ -125,36 +100,6 @@ int myfgets(char s[], int l, char* unaligned, int unaligned_charlen, int* index)
 	}
 	return 0;
 }
-
-/*char *load1SeqWithoutName_realloc_casepreserve( FILE *fpp )
-{
-	int c, b;
-	char *cbuf;
-	int size = N;
-	char *val;
-
-	val = malloc( (size+1) * sizeof( char ) );
-	cbuf = val;
-
-	b = '\n';
-	while( ( c = getc( fpp ) ) != EOF &&           
-          !( ( c == '>' || c == EOF ) && b == '\n' ) )
-	{
-		*cbuf++ = (char)c;  
-		if( cbuf - val == size )
-		{
-			size += N;
-			val = (char *)realloc( val, (size+1) * sizeof( char ) );
-			if( !val ) exit( 1 );
-			cbuf = val + size-N;
-		}
-		b = c;
-	}
-	ungetc( c, fpp );
-	*cbuf = 0;
-	charfilter( (unsigned char *) val );
-	return( val );
-}*/
 
 char *load1SeqWithoutName_realloc_casepreserve(char* unaligned, int unaligned_charlen, int* index) {
 	int c, b;
