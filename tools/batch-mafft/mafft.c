@@ -1,4 +1,5 @@
 #include "replaceu.c"
+#include "tbfast.c"
 
 #define er 0
 #define progname "linsi"
@@ -78,12 +79,100 @@ char* mafft_magus(char* unaligned, int nseq) {
 int main(int argc, char* argv[]) {
     char* inputfile = "../mafft-main/test/sample";
     char* unaligned = extract_file_contents(inputfile);
+
+    char** seq;
+    char** name;
+    int* nlen;
     char dorp = 'n';
     int njob = 0;
     int nlenmax = 0;
     int nlenmin = 0;
 
-    replaceu(unaligned, unaligned_charlen, inputfile, &dorp, &njob, &nlenmax, &nlenmin);
+    replaceu(unaligned, unaligned_charlen, &dorp, &njob, &nlenmax, &nlenmin, name, seq, nlen);
+
+    tbfast();
+
+    char** mseq1;
+    char** mseq2;
+    int* selfscore;
+    double** len;
+    double* eff;
+    char* kozoarivec;
+    char* mergeoralign;
+    Treedep* dep;
+    int** localmem;
+    double** iscore;
+    int* targetmap;
+    int* targetmapr;
+    LocalHom** localhomtable;
+    char **pav, **tav;
+    int tbfast_argc = 43;
+
+    // Allocate all necessary memory
+    mseq1 = AllocateCharMtx( njob, 0 );
+	mseq2 = AllocateCharMtx( njob, 0 );
+    selfscore = AllocateIntVec( njob );
+    len = AllocateFloatMtx( njob, 2 );
+	eff = AllocateDoubleVec( njob );
+	kozoarivec = AllocateCharVec( njob );
+    mergeoralign = AllocateCharVec( njob );
+    dep = (Treedep *)calloc( njob, sizeof( Treedep ) );
+    localmem = AllocateIntMtx( 2, njob+1 );
+    iscore = AllocateFloatHalfMtx( njob );
+
+    targetmap = calloc( njob, sizeof( int ) );
+    targetmapr = calloc( njob, sizeof( int ) );
+    for( i=0; i<njob; i++ ) targetmap[i] = targetmapr[i] = i;
+
+    localhomtable = (LocalHom **)calloc( ntarget, sizeof( LocalHom *) );
+    for( i=0; i<ntarget; i++ ) localhomtable[i] = (LocalHom *)calloc( ilim, sizeof( LocalHom ) );
+
+    pav = calloc( tbfast_argc, sizeof( char * ) );
+	tav = calloc( tbfast_argc, sizeof( char * ) );
+
+    pav[0]= "tbfast-pair"
+    pav[1]= "-u"
+    pav[2]= "0.0"
+    pav[3]= "-l"
+    pav[4]= "2.7"
+    pav[5]= "-C"
+    pav[6]= "0"
+    pav[7]= "-b"
+    pav[8]= "62"
+    pav[9]= "-g"
+    pav[10]= "-0.100"
+    pav[11]= "-f"
+    pav[12]= "-2.00"
+    pav[13]= "-Q"
+    pav[14]= "100.0"
+    pav[15]= "-h"
+    pav[16]= "0.1"
+    pav[17]= "-L"
+
+    tav[0]= "tbfast"
+    tav[1]= "-+"
+    tav[2]= "16"
+    tav[3]= "-W"
+    tav[4]= "0.00001"
+    tav[5]= "-V"
+    tav[6]= "-1.53"
+    tav[7]= "-s"
+    tav[8]= "0.0"
+    tav[9]= "-O"
+    tav[10]= "-C"
+    tav[11]= "0"
+    tav[12]= "-b"
+    tav[13]= "62"
+    tav[14]= "-f"
+    tav[15]= "-1.53"
+    tav[16]= "-Q"
+    tav[17]= "100.0"
+    tav[18]= "-h"
+    tav[19]= "-0.123"
+    tav[20]= "-l"
+    tav[21]= "2.7"
+    tav[22]= "-X"
+    tav[23]= "0.1"
 
     fprintf(stderr, "dorp:\t%c\nnjob:\t%d\nnlenmax:\t%d\nnlenmin:\t%d\n", dorp, njob, nlenmax, nlenmin);
 }

@@ -18,11 +18,16 @@ static void replace_unusual( int n, char **seq, char *usual, char unknown, int (
 	}
 }
 
-void replaceu(char* unaligned, int unaligned_charlen, char* inputfile, char* dorp, int* njob, int* nlenmax, int* lenmin) {
+void replaceu(char* unaligned, 
+			  int unaligned_charlen, 
+			  char* dorp, 
+			  int* njob, 
+			  int* nlenmax,
+			  int* lenmin,
+			  char** name,
+			  char** seq,
+			  int* nlen) {
 	int nlenmin;
-	char **name;
-	char **seq;
-	int *nlen;
 	int i;
 	char *usual;
     
